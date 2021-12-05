@@ -1,14 +1,17 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Auth from "./Auth";
-import Dashboard from "./Dashboard";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AuthComponent from './components/AuthComponent';
+import Dashboard from './components/DashboardComponent';
+import { AuthContext } from './contexts/AuthContext';
 
 const App = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/auth" element={<Auth />} />
-    </Routes>
-  </BrowserRouter>
+  <AuthContext.Provider value={{ initialContext: 'true' }}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/auth" element={<AuthComponent />} />
+      </Routes>
+    </BrowserRouter>
+  </AuthContext.Provider>
 );
 
 export default App;
