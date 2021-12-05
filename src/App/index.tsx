@@ -1,17 +1,26 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AuthComponent from './components/AuthComponent';
 import Dashboard from './components/DashboardComponent';
-import { AuthContext } from './contexts/AuthContext';
+import { AuthContext, AuthContextProvider } from './contexts/AuthContext';
 
-const App = () => (
-  <AuthContext.Provider value={{ initialContext: 'true' }}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/auth" element={<AuthComponent />} />
-      </Routes>
-    </BrowserRouter>
-  </AuthContext.Provider>
-);
+const App = () => {
+  return (
+    <AuthContextProvider>
+      <AuthContext.Consumer>
+        {(value) =>
+          !value.state.token ? (
+            <AuthComponent />
+          ) : (
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+              </Routes>
+            </BrowserRouter>
+          )
+        }
+      </AuthContext.Consumer>
+    </AuthContextProvider>
+  );
+};
 
 export default App;

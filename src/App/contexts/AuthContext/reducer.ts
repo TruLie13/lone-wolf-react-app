@@ -1,7 +1,7 @@
 import { Authentication } from '../../models/Authentication';
 import { AuthActions, AuthActionTypes } from './actions';
 
-export const reducer = (
+export const authReducer = (
   state: Authentication,
   action: AuthActions
 ): Authentication => {

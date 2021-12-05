@@ -18,10 +18,10 @@ export const SignOut = (): SignOutAction => ({
   type: AuthActionTypes.signOut,
 });
 
-export type UpdateTokenAction = Action<AuthActionTypes, { token: string }>;
-export const UpdateToken = (payload: { token: string }): UpdateTokenAction => ({
+export type UpdateTokenAction = Action<AuthActionTypes, Authentication>;
+export const UpdateToken = (payload: Authentication): UpdateTokenAction => ({
   payload,
   type: AuthActionTypes.updateToken,
 });
 
-export type AuthActions = SignInAction;
+export type AuthActions = SignInAction | SignOutAction | UpdateTokenAction;
